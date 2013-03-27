@@ -1,0 +1,13 @@
+.nav {
+    padding: 20px 0;
+    overflow: hidden;
+    width: 600px;
+}
+
+.nav .left {
+    float: left;
+}
+
+.nav .right {
+    float: right;
+}

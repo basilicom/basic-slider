@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/demo.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/basicslider.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/jquery.basicslider.js"></script>
+
+    <title>Basic Slider</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Demo: Basic Slider</h1>
+        <a href="">Back</a>
+    </div>
+
+    <div class="wrapper">
+
+        <div id="slider">
+            <div class="slide">
+                <h2>Lorem Ipsum 1</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="slide">
+                <h2>Lorem Ipsum 2</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="slide">
+                <h2>Lorem Ipsum 3</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <div class="left">
+                <a class="btn" href="#1">Page 1</a> | <a class="btn" href="#2">Page 2</a> | <a class="btn" href="#3">Page 3</a>
+            </div>
+            <div class="right">
+                <a class="btn" href="#prev">Prev</a> | <a class="btn" href="#next">Next</a>
+            </div>
+        </div>
+
+        <div class="doc">
+
+            <h2>HTML</h2>
+            <pre>
+&lt;div id="slider"&gt;
+    &lt;div class="slide"&gt;
+        &lt;h2&gt;Lorem Ipsum 1&lt;/h2&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="slide"&gt;
+        &lt;h2&gt;Lorem Ipsum 2&lt;/h2&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="slide"&gt;
+        &lt;h2&gt;Lorem Ipsum 3&lt;/h2&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </pre>
+
+            <h2>Default CSS</h2>
+            <pre>
+.basic-slider {
+    overflow: hidden;
+    position: relative;
+}
+            </pre>
+
+            <h2>Default JavaScript</h2>
+            <pre>
+$(function(){
+    $('#slider').basicSlider();
+
+    // calling a method
+    $('#slider').basicSlider('method', arguments);
+}
+            </pre>
+
+            <h2>Options</h2>
+            <dl>
+                <dt>width:Number - default: 600</dt>
+                <dt>height:Number - default: 300</dt>
+                <dt>duration:Number - default: 500</dt>
+                <dt>easing:String - default: 'swing'</dt>
+                <dt>onStart:Function - default: null</dt>
+                <dt>onComplete:Function - default: null</dt>
+            </dl>
+
+            <h2>Public Methods</h2>
+            <dl>
+                <dt>next()</dt>
+                <dt>prev()</dt>
+                <dt>goToSlide(int) e.g. 1-3</dt>
+                <dt>goToIndex(int) e.g. 0-2</dt>
+            </dl>
+
+            <br><br>
+            <a target="_blank" href="https://github.com/basilicom/basic-slider">Download from GitHub</a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Marco Senkpiel 2013
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            var slider = $('#slider');
+            slider.basicSlider({
+                easing:'easeInOutBack',
+                duration:1000,
+                onStart:function(){
+                    console.log('on start');
+                },
+                onComplete:function(activeSlide, index){
+                    console.log('on complete => Active Slide: ' + activeSlide + ' - Index: ' +index);
+                }
+            });
+
+            $('a.btn').on('click',function(e){
+                e.preventDefault();
+                var action = $(e.currentTarget).attr('href').substr(1);
+                if(action == 'prev'){
+                    slider.basicSlider('prev');
+                } else if(action == 'next'){
+                    slider.basicSlider('next');
+                } else {
+                    var num = parseInt(action);
+                    slider.basicSlider('goToSlide', num);
+                }
+
+            });
+        });
+    </script>
+
+</body>
+</html>
