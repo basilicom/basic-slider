@@ -65,3 +65,8 @@ a {
 .doc dl dt {
     padding: 3px 0;
 }
+
+.doc dl dt ul {
+    margin: 5px 0 5px 45px;
+
+}

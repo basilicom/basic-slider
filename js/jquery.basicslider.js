@@ -21,7 +21,8 @@
                 duration: 500,
                 easing: 'swing',
                 onStart: null,
-                onComplete: null
+                onComplete: null,
+                navigationContainer:null
             },
 
             settings = $.extend({}, defaults, options),
@@ -51,6 +52,7 @@
                 slidesCount: 0,
                 currentSlide: 0,
                 initialPositions:[],
+                isNavigation:false,
 
                 addIndices: function () {
                     core.slides.each(function (index) {
@@ -115,6 +117,10 @@
                         if (typeof settings.onComplete === 'function') {
                             settings.onComplete(core.currentSlide+1, core.currentSlide);
                         }
+
+                        if(core.isNavigation){
+                            core.updateNavigation();
+                        }
                     }
                 },
 
@@ -139,6 +145,33 @@
                     }
                 },
 
+                createNavigation:function(){
+                    var $navCon = settings.navigationContainer;
+                    for (var i = 0; i < core.slidesCount; i++) {
+                        var item = '<a href="#'+i+'"></a>';
+                        $navCon.append(item);
+                    }
+
+                    $('a', $navCon).on('click',function(e){
+                        e.preventDefault();
+                        var id = parseInt($(e.currentTarget).attr('href').substr(1));
+                        core.goToSlide(id);
+                    });
+
+                    core.updateNavigation();
+                },
+
+                updateNavigation:function(){
+                    var $navCon = settings.navigationContainer;
+                    $('a', $navCon).each(function(index, el){
+                        $(this).removeClass('active');
+                        var id = parseInt($(this).attr('href').substr(1));
+                        if(id == core.currentSlide){
+                            $(this).addClass('active');
+                        }
+                    });
+                },
+
                 init: function () {
                     core.slides = slider.children('.slide');
                     core.slidesCount = core.slides.length;
@@ -146,6 +179,11 @@
                     core.addIndices();
                     core.applyStyles();
                     core.setInitialPositions();
+
+                    if(settings.navigationContainer != null){
+                        core.isNavigation = true;
+                        core.createNavigation();
+                    }
                 }
             };
 

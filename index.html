@@ -37,6 +37,8 @@
             </div>
         </div>
 
+        <div class="navigation"></div>
+
         <div class="nav">
             <div class="left">
                 <a class="btn" href="#1">Page 1</a> | <a class="btn" href="#2">Page 2</a> | <a class="btn" href="#3">Page 3</a>
@@ -92,6 +94,7 @@ $(function(){
                 <dt>easing:String - default: 'swing'</dt>
                 <dt>onStart:Function - default: null</dt>
                 <dt>onComplete:Function - default: null</dt>
+                <dt>navigationContainer:jQueryElement - default: null; you can use a class selector for multiple navigation's</dt>
             </dl>
 
             <h2>Public Methods</h2>
@@ -102,8 +105,87 @@ $(function(){
                 <dt>goToIndex(int) e.g. 0-2</dt>
             </dl>
 
+
+
+            <h2>With Navigation</h2>
+            <pre>
+&lt;div id="slider"&gt;
+    &lt;div class="slide"&gt;
+        &lt;h2&gt;Lorem Ipsum 1&lt;/h2&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="slide"&gt;
+        &lt;h2&gt;Lorem Ipsum 2&lt;/h2&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="slide"&gt;
+        &lt;h2&gt;Lorem Ipsum 3&lt;/h2&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="navigation"&gt;&lt;/div&gt;
+            </pre>
+
+            <h2>CSS for Navigation</h2>
+            <pre>
+.basic-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+div.navigation {
+    text-align: center;
+    width: 590px;
+    padding: 5px;
+}
+
+div.navigation a {
+    display:inline-block;
+    zoom:1; /* triggers hasLayout in ie for inline-block elements */
+    width:10px;
+    height: 10px;
+    background-color: #cccccc;
+    line-height: 10px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+div.navigation a.active {
+    background-color: #009999;
+}
+            </pre>
+
+            <h2>JavaScript for Navigation</h2>
+            <pre>
+$(function(){
+    $('#slider').basicSlider({
+        navigationContainer:$('div.navigation')
+    });
+}
+            </pre>
+
+
             <br><br>
             <a target="_blank" href="https://github.com/basilicom/basic-slider">Download from GitHub</a>
+
+            <br><br>
+
+            <h2>Change Log</h2>
+            <dl>
+                <dt>
+                    Version 1.1
+                <ul>
+                    <li>added new option <em>navigationContainer</em> - if it set (an jquery object) an navigation item of each element will be appended to this container</li>
+                </ul>
+                </dt>
+                <dt>
+                    Version 1.0
+                    <ul>
+                        <li>base slider functionality added</li>
+                    </ul>
+                </dt>
+            </dl>
 
         </div>
 
@@ -124,7 +206,8 @@ $(function(){
                 },
                 onComplete:function(activeSlide, index){
                     console.log('on complete => Active Slide: ' + activeSlide + ' - Index: ' +index);
-                }
+                },
+                navigationContainer:$('div.navigation')
             });
 
             $('a.btn').on('click',function(e){
