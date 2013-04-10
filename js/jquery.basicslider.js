@@ -6,7 +6,7 @@
  *   demo:      http://labs.marco-senkpiel.de/demos/basic-slider/
  *   download:  https://github.com/basilicom/basic-slider
  *
- *   Version:   1.0
+ *   Version:   1.1
  *   Copyright: (c) 2013 Marco Senkpiel
  *   Licence:   MIT
  *
