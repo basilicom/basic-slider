@@ -26,6 +26,8 @@ $(elements).basicSlider();
 
 **navigationContainer** (jQueryElement - default: null): you can use a class selector for multiple navigation's
 
+**fullWidth** (Boolean - default: false): allows to set the container to the width of its parent container
+
 ## Methods
 
 **next()**
@@ -47,7 +49,7 @@ instance.basicSlider('method', arguments);
 
 ### Version 1.2
 
-+ added new option <em>fullWith</em> - allows to set the container to the width of its parent container
++ added new option <em>fullWidth</em> - allows to set the container to the width of its parent container
 
 ### Version 1.1
 
