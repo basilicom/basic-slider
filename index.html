@@ -48,6 +48,27 @@
             </div>
         </div>
 
+        <div id="fullWithSlider">
+            <div class="slide">
+                <h2>Lorem Ipsum 1</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="slide">
+                <h2>Lorem Ipsum 2</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="slide">
+                <h2>Lorem Ipsum 3</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <div class="right">
+                <a class="btn-full" href="#prev">Prev</a> | <a class="btn-full" href="#next">Next</a>
+            </div>
+        </div>
+
         <div class="doc">
 
             <h2>HTML</h2>
@@ -174,10 +195,16 @@ $(function(){
             <h2>Change Log</h2>
             <dl>
                 <dt>
+                Version 1.2
+                    <ul>
+                        <li>added new option <em>fullWith</em> - allows to set the container to the width of its parent container</li>
+                    </ul>
+                </dt>
+                <dt>
                     Version 1.1
-                <ul>
-                    <li>added new option <em>navigationContainer</em> - if it set (an jquery object) an navigation item of each element will be appended to this container</li>
-                </ul>
+                    <ul>
+                        <li>added new option <em>navigationContainer</em> - if it set (an jquery object) an navigation item of each element will be appended to this container</li>
+                    </ul>
                 </dt>
                 <dt>
                     Version 1.0
@@ -222,6 +249,22 @@ $(function(){
                     slider.basicSlider('goToSlide', num);
                 }
 
+            });
+
+
+            $('#fullWithSlider').basicSlider({
+               fullWidth:true,
+                slideWith:600
+            });
+
+            $('a.btn-full').on('click',function(e){
+                e.preventDefault();
+                var action = $(e.currentTarget).attr('href').substr(1);
+                if(action == 'prev'){
+                    $('#fullWithSlider').basicSlider('prev');
+                } else if(action == 'next'){
+                    $('#fullWithSlider').basicSlider('next');
+                }
             });
         });
     </script>

@@ -5,10 +5,10 @@
 }
 
 div.navigation {
-    text-align: center;
-    width: 590px;
-    padding: 5px;
-}
+     text-align: center;
+     width: 590px;
+     padding: 5px;
+ }
 
 div.navigation a {
     display:inline-block;

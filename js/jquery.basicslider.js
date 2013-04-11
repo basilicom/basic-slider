@@ -6,7 +6,7 @@
  *   demo:      http://labs.marco-senkpiel.de/demos/basic-slider/
  *   download:  https://github.com/basilicom/basic-slider
  *
- *   Version:   1.1
+ *   Version:   1.2
  *   Copyright: (c) 2013 Marco Senkpiel
  *   Licence:   MIT
  *
@@ -22,19 +22,18 @@
                 easing: 'swing',
                 onStart: null,
                 onComplete: null,
-                navigationContainer:null
+                navigationContainer:null,
+                fullWidth:false
             },
 
             settings = $.extend({}, defaults, options),
 
             methods = {
                 next:function(){
-                    console.log('next');
                     core.nextSlide();
                 },
 
                 prev:function(){
-                    console.log('prev');
                     core.prevSlide();
                 },
 
@@ -53,6 +52,7 @@
                 currentSlide: 0,
                 initialPositions:[],
                 isNavigation:false,
+                fullWithOffset:0,
 
                 addIndices: function () {
                     core.slides.each(function (index) {
@@ -61,6 +61,11 @@
                 },
 
                 applyStyles: function () {
+
+                    if(settings.fullWidth){
+                        settings.width = slider.parent().width()
+                    }
+
                     slider.addClass('basic-slider').css({
                         width:settings.width,
                         height:settings.height
@@ -74,27 +79,37 @@
                 },
 
                 setInitialPositions: function () {
+
                     core.slides.each(function (index) {
                         var $this = $(this);
                         var left = (settings.width * index);
 
-                        core.initialPositions[index] = left;
+                        if(settings.fullWidth){
+                            var slideWidth = $this.outerWidth(true);
+                            core.fullWithOffset = (slider.parent().width() / 2) - (slideWidth / 2);
+                            left = (slideWidth * index) + core.fullWithOffset;
 
-                        $this.css({
-                            left: left,
-                            width: settings.width,
-                            height: '100%'
-                        });
+                            $this.css({
+                                left: left
+                            });
+                        } else {
+                            $this.css({
+                                left: left,
+                                width: settings.width,
+                                height: '100%'
+                            });
+                        }
+
+                        core.initialPositions[index] = left;
                     });
                 },
 
                 animateSlides: function () {
                     core.onAnimationStart();
                     core.slides.each(function (index) {
-
-                        var left = core.initialPositions[index] - (settings.width * core.currentSlide);
-
                         var $slide = $(this);
+                        var left = (core.initialPositions[index] - ($slide.outerWidth(true) * core.currentSlide));
+
                         $slide.stop().animate({
                             left:left
                         },{
@@ -172,6 +187,12 @@
                     });
                 },
 
+                addResizeListener:function(){
+                    $(window).resize(function (e) {
+                        core.setInitialPositions();
+                    });
+                },
+
                 init: function () {
                     core.slides = slider.children('.slide');
                     core.slidesCount = core.slides.length;
@@ -183,6 +204,10 @@
                     if(settings.navigationContainer != null){
                         core.isNavigation = true;
                         core.createNavigation();
+                    }
+
+                    if(settings.fullWidth){
+                        core.addResizeListener();
                     }
                 }
             };

@@ -11,3 +11,8 @@
 .nav .right {
     float: right;
 }
+
+#fullWithSlider .slide {
+    width: 800px;
+    padding: 0 50px;
+}

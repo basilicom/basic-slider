@@ -45,6 +45,10 @@ instance.basicSlider('method', arguments);
 
 ## Change Log
 
+### Version 1.2
+
++ added new option <em>fullWith</em> - allows to set the container to the width of its parent container
+
 ### Version 1.1
 
 + added new option <em>navigationContainer</em> - if it set (an jquery object) an navigation item of each element will be appended to this container
