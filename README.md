@@ -13,6 +13,7 @@ $(elements).basicSlider();
 ## Options
 
 **width** (Number - default: 600)
+
 **height** (Number - default: 300)
 
 **duration** (Number - default: 500)
