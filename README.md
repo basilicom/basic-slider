@@ -39,7 +39,8 @@ $(elements).basicSlider();
 ## Calling a Method
 
 ```js
-$('#slider').basicSlider('method', arguments);
+var instance = $('#slider'); // jQuery basic slider instance
+instance.basicSlider('method', arguments);
 ```
 
 ## Change Log
